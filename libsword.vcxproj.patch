@@ -1,0 +1,65 @@
+--- libsword.vcxproj.bak	2014-03-19 06:21:23.000000000 -0400
++++ libsword.vcxproj	2020-01-30 22:10:26.289385300 -0500
+@@ -1,5 +1,5 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <ItemGroup Label="ProjectConfigurations">
+     <ProjectConfiguration Include="Debug|Win32">
+       <Configuration>Debug</Configuration>
+@@ -19,13 +19,13 @@
+     <ConfigurationType>DynamicLibrary</ConfigurationType>
+     <UseOfMfc>false</UseOfMfc>
+     <CharacterSet>MultiByte</CharacterSet>
+-    <PlatformToolset>v120</PlatformToolset>
++    <PlatformToolset>v141</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+     <ConfigurationType>DynamicLibrary</ConfigurationType>
+     <UseOfMfc>false</UseOfMfc>
+     <CharacterSet>MultiByte</CharacterSet>
+-    <PlatformToolset>v120</PlatformToolset>
++    <PlatformToolset>v141</PlatformToolset>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+   <ImportGroup Label="ExtensionSettings">
+@@ -63,7 +63,7 @@
+     <ClCompile>
+       <AdditionalOptions>/D _CRT_SECURE_NO_DEPRECATE %(AdditionalOptions)</AdditionalOptions>
+       <Optimization>Disabled</Optimization>
+-      <AdditionalIncludeDirectories>../../include;../../include/internal/regex;../../../icu-sword/include;../../src/utilfuns/win32;../../../curl/include;../../../xz/include;../../../bzip2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <AdditionalIncludeDirectories>../../include;../../include/internal/regex;../../../icu/include;../../src/utilfuns/win32;../../../curl/include;../../../xz/include;../../../bzip2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+       <PreprocessorDefinitions>_DEBUG;_ICU_;_ICUSWORD_;WIN32;_LIB;REGEX_MALLOC;SWMAKINGDLL;CURLAVAILABLE;CURL_STATICLIB;USBINARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+@@ -85,8 +85,8 @@
+       <Culture>0x0409</Culture>
+     </ResourceCompile>
+     <Link>
+-      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;winmm.lib;wldap32.lib;icuuc.lib;icuin.lib;icudt.lib;libbz2.lib;liblzma.lib;%(AdditionalDependencies)</AdditionalDependencies>
+-      <AdditionalLibraryDirectories>../../../curl/builds/libcurl-vc-x86-release-static-ipv6-sspi-spnego-winssl/lib;../../../icu-sword/lib;../../../bzip2/Release;../../../xz/bin_i486;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
++      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;winmm.lib;wldap32.lib;icuuc.lib;icuin.lib;icudt.lib;libbz2.lib;liblzma.lib;advapi32.lib;crypt32.lib;normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
++      <AdditionalLibraryDirectories>../../../curl/builds/libcurl-vc-x86-release-static-ipv6-sspi-winssl/lib;../../../icu/lib;../../../bzip2;../../../xz/bin_i686;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+       <RandomizedBaseAddress>false</RandomizedBaseAddress>
+       <DataExecutionPrevention>
+       </DataExecutionPrevention>
+@@ -100,7 +100,7 @@
+     <ClCompile>
+       <Optimization>Full</Optimization>
+       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+-      <AdditionalIncludeDirectories>../../include;../../include/internal/regex;../../../icu-sword/include;../../src/utilfuns/win32;../../../curl/include;../../../xz/include;../../../bzip2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <AdditionalIncludeDirectories>../../include;../../include/internal/regex;../../../icu/include;../../src/utilfuns/win32;../../../curl/include;../../../xz/include;../../../bzip2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+       <PreprocessorDefinitions>NDEBUG;_ICU_;_ICUSWORD_;WIN32;_LIB;REGEX_MALLOC;SWMAKINGDLL;CURLAVAILABLE;CURL_STATICLIB;USBINARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <StringPooling>
+       </StringPooling>
+@@ -124,8 +124,8 @@
+       <Culture>0x0409</Culture>
+     </ResourceCompile>
+     <Link>
+-      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;winmm.lib;wldap32.lib;icuuc.lib;icuin.lib;icudt.lib;libbz2.lib;liblzma.lib;%(AdditionalDependencies)</AdditionalDependencies>
+-      <AdditionalLibraryDirectories>../../../curl/builds/libcurl-vc-x86-release-static-ipv6-sspi-spnego-winssl/lib;../../../icu-sword/lib;../../../bzip2/Release;../../../xz/bin_i486;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
++      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;winmm.lib;wldap32.lib;icuuc.lib;icuin.lib;icudt.lib;libbz2.lib;liblzma.lib;advapi32.lib;crypt32.lib;normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
++      <AdditionalLibraryDirectories>../../../curl/builds/libcurl-vc-x86-release-static-ipv6-sspi-winssl/lib;../../../icu/lib;../../../bzip2;../../../xz/bin_i686;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+       <RandomizedBaseAddress>false</RandomizedBaseAddress>
+       <DataExecutionPrevention>
+       </DataExecutionPrevention>
