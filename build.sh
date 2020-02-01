@@ -8,8 +8,7 @@ LIBLZMA_VER=5.2.4
 SWIG_VER=4.0.1
 SWORD_VER=1.8.1
 
-mkdir -p ./build
-mkdir -p ./dist
+mkdir -p ./build ./dist
 cd ./build
 
 # Download and run VSWhere
@@ -102,12 +101,13 @@ if [ ! -f "$swigwinFile" ]; then
 fi
 
 # Build Python bindings
-pythonPath=`which python | xargs dirname`
+pythonPath="${PYTHONHOME:-`which python | xargs dirname`}"
 export PYTHON_INCLUDE="${pythonPath}/include"
 export PYTHON_LIB="${pythonPath}/libs/python38.lib"
 
 cd sword/bindings/swig
-../../../swig/swig.exe -w-451,-402 -shadow -c++ -python -o python/Sword.cxx -I./ -I../../include -I../../include/internal/regex -I../../../icu/include -I../../src/utilfuns/win32 -I../../../curl/include ./sword.i
+../../../swig/swig.exe -w-451,-402 -shadow -c++ -python -o python/Sword.cxx -I./ -I../../include \
+  -I../../include/internal/regex -I../../../icu/include -I../../src/utilfuns/win32 -I../../../curl/include ./sword.i
 
 cd python
 echo "#!/usr/bin/env python3
@@ -130,7 +130,7 @@ cd ../../../../..
 
 # Copy Python module, libsword DLL, and dependencies
 icuShortVer=`echo $ICU_VER | cut -c1-2`
-cp ./build/icu/bin/icudt${icuShortVer}.dll ./build/icu/bin/icuin${icuShortVer}.dll ./build/icu/bin/icuuc${icuShortVer}.dll ./dist/
+cp ./build/icu/bin/icu{dt,in,uc}${icuShortVer}.dll ./dist/
 cp ./build/xz/bin_i686/liblzma.dll ./dist/
 cp ./build/sword/lib/vcppmake/Release/libsword.dll ./dist/
 cp ./build/sword/bindings/swig/python/build/lib.win32-3.8/* ./dist/

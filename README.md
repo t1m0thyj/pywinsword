@@ -6,7 +6,7 @@ Builds Python bindings on Windows for [The SWORD Engine](http://www.crosswire.or
 
 Install the following prerequisites and run `build.sh`:
 * [Git Bash for Windows](https://git-scm.com/download/win)
-* [Python 3.8](https://www.python.org/downloads/) (32-bit, installed on PATH)
+* [Python 3.8](https://www.python.org/downloads/) (32-bit, must be added to `PATH` or `PYTHONHOME` environment variable)
 * [Visual Studio 2017 Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15) (with Windows 8.1 SDK & Universal CRT SDK components)
 
 ## Testing
