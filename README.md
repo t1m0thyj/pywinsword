@@ -2,6 +2,13 @@
 
 Builds Python bindings on Windows for [The SWORD Engine](http://www.crosswire.org/sword/software/swordapi.jsp)
 
+## NOTE: This project is not maintained anymore
+
+This project created Python bindings using SWIG wrappers included in the SWORD project that haven't been updated for years. The following projects are suggested alternatives, as they're cross-platform and aren't based on the old SWIG wrappers:
+
+* [pysword](https://pypi.org/project/pysword/) - Python package for reading Sword modules. It only supports Bible modules (not other types like commentaries), and is written from scratch instead of using `libsword`.
+* [node-sword-interface](https://www.npmjs.com/package/node-sword-interface) - Node.js package that wraps the Sword library (and therefore uses 32-bit architecture). It currently only supports Bible modules.
+
 ## Building
 
 Install the following prerequisites and run `build.sh`:
