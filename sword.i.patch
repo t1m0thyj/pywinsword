@@ -1,0 +1,10 @@
+--- sword.i.bak	2017-12-23 18:43:05.000000000 -0500
++++ sword.i	2020-02-04 22:13:36.633443800 -0500
+@@ -10,6 +10,7 @@
+ 
+ #ifdef SWIGPYTHON
+ %include "directors.i"
++%feature("autodoc", "1");
+ #endif
+ 
+ /* Some renames for sanity */

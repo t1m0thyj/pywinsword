@@ -76,7 +76,7 @@ fi
 
 # TODO Download and build CLucene
 
-# Download and build libsword
+# Download and patch libsword
 swordFile=sword-${SWORD_VER}.tar.gz
 if [ ! -f "$swordFile" ]; then
   swordShortVer=`echo $SWORD_VER | cut -c1-3`
@@ -86,8 +86,12 @@ if [ ! -f "$swordFile" ]; then
 
   cp ./sword/lib/vcppmake/libsword.{vcxproj,vcxproj.bak}
   patch ./sword/lib/vcppmake/libsword.vcxproj ../libsword.vcxproj.patch
+
+  cp ./sword/bindings/swig/sword.{i,i.bak}
+  patch ./sword/bindings/swig/sword.i ../sword.i.patch
 fi
 
+# Build libsword
 cd ./sword
 vsDevCmd msbuild -t:Build -p:Configuration=Release -p:Platform=Win32 lib/vcppmake/libsword.sln
 cd ..
@@ -106,7 +110,7 @@ export PYTHON_INCLUDE="${pythonPath}/include"
 export PYTHON_LIB="${pythonPath}/libs/python38.lib"
 
 cd sword/bindings/swig
-../../../swig/swig.exe -w-451,-402 -shadow -c++ -python -o python/Sword.cxx -I./ -I../../include \
+../../../swig/swig.exe -w451,402 -shadow -c++ -python -o python/Sword.cxx -I./ -I../../include \
   -I../../include/internal/regex -I../../../icu/include -I../../src/utilfuns/win32 -I../../../curl/include ./sword.i
 
 cd python
@@ -128,7 +132,7 @@ define_macros=[('SWUSINGDLL', None)],
 "${pythonPath}/python.exe" setup.py build
 cd ../../../../..
 
-# Copy Python module, libsword DLL, and dependencies
+# Copy Python module, libsword DLL, and dependencies to dist folder
 icuShortVer=`echo $ICU_VER | cut -c1-2`
 cp ./build/icu/bin/icu{dt,in,uc}${icuShortVer}.dll ./dist/
 cp ./build/xz/bin_i686/liblzma.dll ./dist/
